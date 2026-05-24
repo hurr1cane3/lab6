@@ -107,3 +107,4 @@ if __name__ == '__main__':
     time.sleep(1)
     clear_s()
     game_logic(game_board)
+    
