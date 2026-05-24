@@ -1,3 +1,5 @@
+import random
+
 def game_logic(game_board):
     if game_board == win_board:
         clear_s()
@@ -49,3 +51,31 @@ def movement(move, x_empty, y_empty):
             else:
                 text("Туда незя!")
                 game_logic(game_board)
+
+empty_cell = '   '
+win_board  = [[' 1 ', ' 2 ', ' 3 ', ' 4 '], 
+              [' 5 ', ' 6 ', ' 7 ', ' 8 '], 
+              [' 9 ', '10 ', '11 ', '12 '], 
+              ['13 ', '14 ', '15 ', empty_cell]]
+
+game_board = [x[:] for x in win_board]
+x, y = 3, 3
+for _ in range(50):
+    d = []
+    if x > 0: d.append('w')
+    if x < 3: d.append('s')
+    if y > 0: d.append('a')
+    if y < 3: d.append('d')
+    move = random.choice(d)
+    if move == 'w':
+        game_board[x][y], game_board[x-1][y] = game_board[x-1][y], game_board[x][y]
+        x -= 1
+    elif move == 's':
+        game_board[x][y], game_board[x+1][y] = game_board[x+1][y], game_board[x][y]
+        x += 1
+    elif move == 'a':
+        game_board[x][y], game_board[x][y-1] = game_board[x][y-1], game_board[x][y]
+        y -= 1
+    elif move == 'd':
+        game_board[x][y], game_board[x][y+1] = game_board[x][y+1], game_board[x][y]
+        y += 1
