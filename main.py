@@ -1,4 +1,25 @@
 import random
+import os 
+import time
+
+def clear_s():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+def print_board(board):
+    """Выводит доску в красивом виде, как в настоящей игре."""
+    print("\n+----+----+----+----+")
+    for i in board:
+        line = "|"
+        for j in i:
+            line += f"{j:>3} |"
+        print(line)
+        print("+----+----+----+----+")
+
+def text(m):
+    clear_s()
+    print_board(game_board)
+    print(f"\n{m}")
+    time.sleep(1)
 
 def game_logic(game_board):
     if game_board == win_board:
